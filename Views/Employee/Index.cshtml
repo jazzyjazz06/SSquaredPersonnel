@@ -1,0 +1,46 @@
+﻿@model IEnumerable<SSquaredPersonnel.Models.Employee>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@Html.Label("Manager", htmlAttributes: new { @class = "managerlabel" })
+@Html.DropDownList("ManagerID", (IEnumerable<SelectListItem>)ViewBag.EmployeeList, " ", htmlAttributes: new { @onchange = "showsubs(this.value)" })
+<script>
+    function showsubs(val) {
+        window.location.href = val;
+    }
+</script>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Employee_ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.LastName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Employee_ID)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LastName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Add Employee", "Create", "Employee", new { @class = "btn btn-default" })
+</p>
